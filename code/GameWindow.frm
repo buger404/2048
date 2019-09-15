@@ -48,10 +48,12 @@ End Sub
 Private Sub Form_Load()
     '初始化Emerald（在此处可以修改窗口大小哟~）
     StartEmerald Me.Hwnd, 805, 556
+    
     '创建字体
     MakeFont "微软雅黑"
     '创建页面管理器
     Set EC = New GMan
+    'ECore.Layered True
     
     '创建存档（可选）
     'Set ESave = New GSaving
