@@ -423,7 +423,7 @@ ReCopy:
                     SetConsoleColor colors.DefaultText
                     WriteLine "Active page : " & ECore.ActivePage
                     WriteLine "FPS " & FPS & " , max FPS " & Int(1000 / Int(FPSct / FPS)) & " (per frame " & Int(FPSct / FPS) & " ms)"
-                    WriteLine "Button " & Mouse.button & " , click state " & Mouse.state & " , in (" & Mouse.X & "," & Mouse.Y & ")"
+                    WriteLine "Button " & Mouse.button & " , click state " & Mouse.state & " , in (" & Mouse.X & "," & Mouse.y & ")"
                     NewLine
                     SetConsoleColor colors.HighLightText
                     WriteLine "Visual Basic 6.0 IDE"
@@ -688,7 +688,7 @@ ReCopy:
             Call BackLine: Call ClearLine
             SetConsoleColor colors.DefaultText
             Select Case Params(1)
-                Case "": WriteWord "Button " & Mouse.button & " , click state " & Mouse.state & " , in (" & Mouse.X & "," & Mouse.Y & ")"
+                Case "": WriteWord "Button " & Mouse.button & " , click state " & Mouse.state & " , in (" & Mouse.X & "," & Mouse.y & ")"
                 Case "-help"
                     WriteWord "No any commands ."
                     Call ExitExec
@@ -867,7 +867,7 @@ End Sub
 Public Sub Update()
     If PageMark = 1 Then Call Update2: Exit Sub
 
-    'On Error Resume Next
+    On Error Resume Next
     
     Page.PaintLine -1, GH - 1, GW, GH - 1, argb(255, 0, 183, 195), 2
     If FPS <> 0 Then Page.Writes FPS & "/" & Int(1000 / Int(FPSct / FPS)), 15, 14, 34, argb(205, 182, 174, 173)

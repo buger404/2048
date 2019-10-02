@@ -45,9 +45,13 @@ Private Sub Form_KeyPress(KeyAscii As Integer)
     If TextHandle <> 0 Then WaitChr = WaitChr & Chr(KeyAscii)
 End Sub
 
+Private Sub Form_KeyUp(KeyCode As Integer, Shift As Integer)
+    GamePage.KeyUp KeyCode
+End Sub
+
 Private Sub Form_Load()
     '初始化Emerald（在此处可以修改窗口大小哟~）
-    StartEmerald Me.Hwnd, 805, 556
+    StartEmerald Me.Hwnd, 800, 800
     
     '创建字体
     MakeFont "微软雅黑"
@@ -56,8 +60,8 @@ Private Sub Form_Load()
     'ECore.Layered True
     
     '创建存档（可选）
-    'Set ESave = New GSaving
-    'ESave.Create "emerald.test", "Emerald.test"
+    Set ESave = New GSaving
+    ESave.Create "competition.2048", "password123456"
     
     '创建音乐列表
     Set MusicList = New GMusicList
@@ -79,22 +83,22 @@ Private Sub Form_Load()
     EC.ActivePage = "GamePage"
 End Sub
 
-Private Sub Form_MouseDown(button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub Form_MouseDown(button As Integer, Shift As Integer, X As Single, y As Single)
     '发送鼠标信息
-    UpdateMouse X, Y, 1, button
+    UpdateMouse X, y, 1, button
 End Sub
 
-Private Sub Form_MouseMove(button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub Form_MouseMove(button As Integer, Shift As Integer, X As Single, y As Single)
     '发送鼠标信息
     If Mouse.state = 0 Then
-        UpdateMouse X, Y, 0, button
+        UpdateMouse X, y, 0, button
     Else
-        Mouse.X = X: Mouse.Y = Y
+        Mouse.X = X: Mouse.y = y
     End If
 End Sub
-Private Sub Form_MouseUp(button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub Form_MouseUp(button As Integer, Shift As Integer, X As Single, y As Single)
     '发送鼠标信息
-    UpdateMouse X, Y, 2, button
+    UpdateMouse X, y, 2, button
 End Sub
 
 Private Sub Form_Unload(Cancel As Integer)
